@@ -14,6 +14,7 @@ class CacheFadeImage extends StatefulWidget {
     Key key,
     double scale = 1.0,
     this.placeholder = '',
+    this.package,
     this.enableFade = true,
     this.fadeDuration,
     this.cache = true,
@@ -35,6 +36,7 @@ class CacheFadeImage extends StatefulWidget {
 
   final String src;
   final String placeholder;
+  final String package;
   final bool enableFade;
   final Duration fadeDuration;
   final bool cache;
@@ -53,10 +55,9 @@ class CacheFadeImage extends StatefulWidget {
   final bool excludeFromSemantics;
   final Alignment alignment;
 
-
-  static Future<Directory> diskCacheDir() async{
+  static Future<Directory> diskCacheDir() async {
     Directory cacheImagesDirectory =
-    Directory(join((await getTemporaryDirectory()).path, "cacheimage"));
+        Directory(join((await getTemporaryDirectory()).path, "cacheimage"));
     return cacheImagesDirectory;
   }
 
@@ -121,6 +122,7 @@ class CacheFadeImageState extends State<CacheFadeImage>
         _fadeController.reset();
         return Image.asset(
           widget.placeholder,
+          package: widget.package,
           width: widget.width,
           height: widget.height,
           color: widget.color,
@@ -155,6 +157,7 @@ class CacheFadeImageState extends State<CacheFadeImage>
         state.imageProvider.evict();
         return Image.asset(
           widget.placeholder,
+          package: widget.package,
           width: widget.width,
           height: widget.height,
           color: widget.color,
