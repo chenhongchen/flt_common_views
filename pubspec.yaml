@@ -13,8 +13,9 @@ dependencies:
 
   #extended_image 0.6.7 依赖 extended_image_library 0.1.8
   #extended_image 0.6.8 依赖 extended_image_library 0.1.9 有问题
-  extended_image: 0.6.7
-  extended_image_library: 0.1.8
+#  extended_image: 0.6.7
+#  extended_image_library: 0.1.8
+  extended_image: ^0.7.2
 
   flt_system_info:
     git:
