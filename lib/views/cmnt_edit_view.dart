@@ -11,14 +11,21 @@ class CmntEditView extends StatefulWidget {
   final Function() onDispose;
   final Color bgColor;
   final String sendTitle;
+  Color sendBgColor;
 
-  CmntEditView(
-      {this.focusNode,
-      this.placeholder = '',
-      this.sendCallback,
-      this.onDispose,
-      this.bgColor = Colors.transparent,
-      this.sendTitle = '回复'});
+  CmntEditView({
+    this.focusNode,
+    this.placeholder = '',
+    this.sendCallback,
+    this.onDispose,
+    this.bgColor = Colors.transparent,
+    this.sendTitle = '回复',
+    this.sendBgColor,
+  }) {
+    if (this.sendBgColor == null) {
+      this.sendBgColor = Color(0xFF4DA6EB);
+    }
+  }
 
   @override
   State<StatefulWidget> createState() {
@@ -190,7 +197,7 @@ class _CmntEditViewState extends State<CmntEditView>
               borderRadius: BorderRadius.circular(17),
               child: GestureDetector(
                 child: Container(
-                  color: Color(0xFF4DA6EB),
+                  color: widget.sendBgColor,
                   width: 66,
                   height: 34,
                   child: Center(
