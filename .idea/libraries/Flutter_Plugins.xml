@@ -2,8 +2,9 @@
   <library name="Flutter Plugins" type="FlutterPluginsLibraryType">
     <CLASSES>
       <root url="file://$PROJECT_DIR$" />
-      <root url="file://$PROJECT_DIR$/../../circle/kantv_flutter_module/.flutter/.pub-cache/hosted/pub.flutter-io.cn/path_provider-1.5.0" />
-      <root url="file://$PROJECT_DIR$/../../circle/kantv_flutter_module/.flutter/.pub-cache/git/flt_system_info-49b4bc62c71b95f0ba3942eb2c60df2ee97eadc4" />
+      <root url="file://$USER_HOME$/development/flutter/.pub-cache/hosted/pub.flutter-io.cn/path_provider_macos-0.0.4" />
+      <root url="file://$USER_HOME$/development/flutter/.pub-cache/hosted/pub.flutter-io.cn/path_provider-1.6.5" />
+      <root url="file://$USER_HOME$/development/flutter/.pub-cache/git/flt_system_info-49b4bc62c71b95f0ba3942eb2c60df2ee97eadc4" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

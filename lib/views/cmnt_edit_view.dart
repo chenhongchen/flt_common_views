@@ -23,7 +23,7 @@ class CmntEditView extends StatefulWidget {
     this.sendBgColor,
   }) {
     if (this.sendBgColor == null) {
-      this.sendBgColor = Color(0xFF4DA6EB);
+      this.sendBgColor = Color(0xFF1F93EA);
     }
   }
 
