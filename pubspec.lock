@@ -77,7 +77,7 @@ packages:
       path: "."
       ref: HEAD
       resolved-ref: "49b4bc62c71b95f0ba3942eb2c60df2ee97eadc4"
-      url: "https://github.com/chenhongchen/flt_system_info.git"
+      url: "http://app-svn.fangtoday.com:32778/chenhongchen/flt_system_info.git"
     source: git
     version: "0.0.1"
   flutter:
