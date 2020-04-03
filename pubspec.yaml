@@ -17,6 +17,9 @@ dependencies:
 #  extended_image_library: 0.1.8
   extended_image: ^0.7.2
 
+  # 新刷新控件
+  pull_to_refresh: ^1.5.7
+
   flt_system_info:
     git:
       url: 'http://app-svn.fangtoday.com:32778/chenhongchen/flt_system_info.git'
@@ -39,9 +42,9 @@ flutter:
     pluginClass: FltCommonViewsPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
-  # assets:
-  #  - images/a_dot_burr.jpeg
-  #  - images/a_dot_ham.jpeg
+  assets:
+    - images/list_load_idle.gif
+    - images/list_load.gif
   #
   # For details regarding assets in packages, see
   # https://flutter.dev/assets-and-images/#from-packages
