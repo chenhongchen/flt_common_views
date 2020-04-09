@@ -14,6 +14,7 @@ class CacheFadeImage extends StatefulWidget {
     Key key,
     double scale = 1.0,
     this.placeholder = '',
+    this.darkPlaceholder = '',
     this.package,
     this.enableFade = true,
     this.fadeDuration,
@@ -36,6 +37,7 @@ class CacheFadeImage extends StatefulWidget {
 
   final String src;
   final String placeholder;
+  final String darkPlaceholder;
   final String package;
   final bool enableFade;
   final Duration fadeDuration;
@@ -72,6 +74,7 @@ class CacheFadeImageState extends State<CacheFadeImage>
   AnimationController _fadeController;
   CurvedAnimation _curved; //曲线动画，动画插值，
   bool _hasCache = true;
+  String _placeholder;
   @override
   void initState() {
 //    _fade_controller = AnimationController(
@@ -121,7 +124,7 @@ class CacheFadeImageState extends State<CacheFadeImage>
       case LoadState.loading:
         _fadeController.reset();
         return Image.asset(
-          widget.placeholder,
+          _placeholder,
           package: widget.package,
           width: widget.width,
           height: widget.height,
@@ -156,7 +159,7 @@ class CacheFadeImageState extends State<CacheFadeImage>
         //remove memory cached
         state.imageProvider.evict();
         return Image.asset(
-          widget.placeholder,
+          _placeholder,
           package: widget.package,
           width: widget.width,
           height: widget.height,
@@ -169,6 +172,10 @@ class CacheFadeImageState extends State<CacheFadeImage>
 
   @override
   Widget build(BuildContext context) {
+    _placeholder = (widget.darkPlaceholder.length > 0 &&
+            MediaQuery.of(context).platformBrightness == Brightness.dark)
+        ? widget.darkPlaceholder
+        : widget.placeholder;
     return ExtendedImage.network(
       widget.src,
       width: widget.width,
