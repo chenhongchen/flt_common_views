@@ -82,6 +82,7 @@ class _KTGifRefresherState extends State<KTGifRefresher>
         builder: _headerCreate,
       ),
       footer: CustomFooter(
+        loadStyle: LoadStyle.ShowWhenLoading,
         builder: _footerCreate,
       ),
       enablePullDown: widget.enablePullDown,
