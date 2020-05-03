@@ -107,7 +107,7 @@ class CacheFadeImageState extends State<CacheFadeImage>
         Directory(join((await getTemporaryDirectory()).path, "cacheimage"));
     //exist, try to find cache image file
     if (cacheImagesDirectory.existsSync()) {
-      String md5Key = md5.convert(utf8.encode(widget.src)).toString();
+      String md5Key = md5.convert(utf8.encode(widget.src ?? '')).toString();
       File cacheFlie = File(join(cacheImagesDirectory.path, md5Key));
       if (cacheFlie.existsSync()) {
         _hasCache = true;
@@ -177,7 +177,7 @@ class CacheFadeImageState extends State<CacheFadeImage>
         ? widget.darkPlaceholder
         : widget.placeholder;
     return ExtendedImage.network(
-      widget.src,
+      widget.src ?? '',
       width: widget.width,
       height: widget.height,
       color: widget.color,
