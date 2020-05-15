@@ -26,6 +26,7 @@ class CacheFadeImage extends StatefulWidget {
     this.color,
     this.colorBlendMode,
     this.fit,
+    this.placeholderFit,
     this.alignment = Alignment.center,
     this.repeat = ImageRepeat.noRepeat,
     this.centerSlice,
@@ -49,6 +50,7 @@ class CacheFadeImage extends StatefulWidget {
   final FilterQuality filterQuality;
   final BlendMode colorBlendMode;
   final BoxFit fit;
+  final BoxFit placeholderFit;
   final ImageRepeat repeat;
   final Rect centerSlice;
   final bool matchTextDirection;
@@ -129,7 +131,7 @@ class CacheFadeImageState extends State<CacheFadeImage>
           width: widget.width,
           height: widget.height,
           color: widget.color,
-          fit: widget.fit,
+          fit: widget.placeholderFit,
         );
         break;
       case LoadState.completed:
@@ -164,7 +166,7 @@ class CacheFadeImageState extends State<CacheFadeImage>
           width: widget.width,
           height: widget.height,
           color: widget.color,
-          fit: widget.fit,
+          fit: widget.placeholderFit,
         );
         break;
     }
