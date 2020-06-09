@@ -3,8 +3,20 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 import 'package:flt_common_views/flt_common_views.dart';
+import 'package:flt_common_views/views/alter.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(MainPage());
+
+class MainPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: '',
+      debugShowCheckedModeBanner: false,
+      home: MyApp(),
+    );
+  }
+}
 
 class MyApp extends StatefulWidget {
   @override
@@ -47,8 +59,13 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
-        body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+        body: GestureDetector(
+          onTap: () {
+            showAlert(context, 'bbb', 'aaa', '确定', '取消');
+          },
+          child: Center(
+            child: Text('Running on: $_platformVersion\n'),
+          ),
         ),
       ),
     );

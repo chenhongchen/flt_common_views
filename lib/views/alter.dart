@@ -7,6 +7,57 @@ void showAlert(BuildContext context, String title, String msg, String leftTitle,
   showDialog(
     context: context,
     builder: (BuildContext context) {
+      Widget content = Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Text(
+            title,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF222222),
+              fontSize: 18,
+              decoration: TextDecoration.none,
+            ),
+          ),
+          Container(
+            height: 3,
+          ),
+          Text(
+            msg,
+            style: TextStyle(
+              fontWeight: FontWeight.normal,
+              color: Color(0xFF222222),
+              fontSize: 14,
+              decoration: TextDecoration.none,
+            ),
+          ),
+        ],
+      );
+      if (title.length <= 0) {
+        content = Center(
+          child: Text(
+            msg,
+            style: TextStyle(
+              fontWeight: FontWeight.normal,
+              color: Color(0xFF222222),
+              fontSize: 14,
+              decoration: TextDecoration.none,
+            ),
+          ),
+        );
+      } else if (msg.length <= 0) {
+        content = Center(
+          child: Text(
+            title,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF222222),
+              fontSize: 18,
+              decoration: TextDecoration.none,
+            ),
+          ),
+        );
+      }
       return Center(
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10),
@@ -17,34 +68,10 @@ void showAlert(BuildContext context, String title, String msg, String leftTitle,
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Container(
+                  width: double.infinity,
                   color: Colors.white,
                   padding: EdgeInsets.fromLTRB(15, 20, 15, 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        title,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF222222),
-                          fontSize: 18,
-                          decoration: TextDecoration.none,
-                        ),
-                      ),
-                      Container(
-                        height: 3,
-                      ),
-                      Text(
-                        msg,
-                        style: TextStyle(
-                          fontWeight: FontWeight.normal,
-                          color: Color(0xFF222222),
-                          fontSize: 14,
-                          decoration: TextDecoration.none,
-                        ),
-                      ),
-                    ],
-                  ),
+                  child: content,
                 ),
                 Container(
                   height: 0.1,
