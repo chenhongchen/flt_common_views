@@ -85,8 +85,8 @@ class CacheFadeImageState extends State<CacheFadeImage>
 //        duration: widget.fadeDuration == null ? Duration(milliseconds: 333) : widget.fadeDuration,
 //        lowerBound: 0.0,
 //        upperBound: 1.0);
-    _src = _src.replaceAll(' ', '');
-    _src = (widget.src ?? '').replaceAll('//', '/');
+    _src = (widget.src ?? '').replaceAll(' ', '');
+    _src = _src.replaceAll('//', '/');
     _src = _src.replaceFirst(':/', '://');
 
     _fadeController = AnimationController(
