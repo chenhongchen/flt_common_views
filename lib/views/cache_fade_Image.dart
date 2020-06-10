@@ -34,7 +34,11 @@ class CacheFadeImage extends StatefulWidget {
     this.gaplessPlayback = false,
     this.filterQuality = FilterQuality.low,
     Map<String, String> headers,
-  });
+  }) {
+    _src = (src ?? '').replaceAll(' ', '');
+    _src = _src.replaceAll('//', '/');
+    _src = _src.replaceFirst(':/', '://');
+  }
 
   final String src;
   final String placeholder;
@@ -58,6 +62,7 @@ class CacheFadeImage extends StatefulWidget {
   final String semanticLabel;
   final bool excludeFromSemantics;
   final Alignment alignment;
+  String _src;
 
   static Future<Directory> diskCacheDir() async {
     Directory cacheImagesDirectory =
@@ -77,7 +82,6 @@ class CacheFadeImageState extends State<CacheFadeImage>
   CurvedAnimation _curved; //曲线动画，动画插值，
   bool _hasCache = true;
   String _placeholder;
-  String _src;
   @override
   void initState() {
 //    _fade_controller = AnimationController(
@@ -85,9 +89,6 @@ class CacheFadeImageState extends State<CacheFadeImage>
 //        duration: widget.fadeDuration == null ? Duration(milliseconds: 333) : widget.fadeDuration,
 //        lowerBound: 0.0,
 //        upperBound: 1.0);
-    _src = (widget.src ?? '').replaceAll(' ', '');
-    _src = _src.replaceAll('//', '/');
-    _src = _src.replaceFirst(':/', '://');
 
     _fadeController = AnimationController(
         vsync: this,
@@ -113,7 +114,7 @@ class CacheFadeImageState extends State<CacheFadeImage>
         Directory(join((await getTemporaryDirectory()).path, "cacheimage"));
     //exist, try to find cache image file
     if (cacheImagesDirectory.existsSync()) {
-      String md5Key = md5.convert(utf8.encode(_src ?? '')).toString();
+      String md5Key = md5.convert(utf8.encode(widget._src ?? '')).toString();
       File cacheFlie = File(join(cacheImagesDirectory.path, md5Key));
       if (cacheFlie.existsSync()) {
         _hasCache = true;
@@ -183,7 +184,7 @@ class CacheFadeImageState extends State<CacheFadeImage>
         ? widget.darkPlaceholder
         : widget.placeholder;
     return ExtendedImage.network(
-      _src ?? '',
+      widget._src ?? '',
       width: widget.width,
       height: widget.height,
       color: widget.color,
