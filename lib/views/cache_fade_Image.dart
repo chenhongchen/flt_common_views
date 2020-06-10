@@ -86,7 +86,7 @@ class CacheFadeImageState extends State<CacheFadeImage>
 //        lowerBound: 0.0,
 //        upperBound: 1.0);
     _src = (widget.src ?? '').replaceAll('//', '/');
-    _src = _src.replaceFirst('/:', '//:');
+    _src = _src.replaceFirst(':/', '://');
 
     _fadeController = AnimationController(
         vsync: this,
