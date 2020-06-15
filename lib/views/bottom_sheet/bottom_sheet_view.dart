@@ -24,12 +24,14 @@ class BottomSheetItem {
   String text;
   TextStyle style;
   Color backColor;
+  Color dividerColor;
   double height;
 
   BottomSheetItem(
       {this.text = '',
       this.style,
       this.backColor = Colors.white,
+      this.dividerColor,
       this.height = 58.0}) {
     if (style == null) {
       style = TextStyle(
@@ -38,6 +40,9 @@ class BottomSheetItem {
         color: Color(0xFF444444),
         decoration: TextDecoration.none,
       );
+    }
+    if (dividerColor == null) {
+      dividerColor = Color(0xFFEBEBEB);
     }
   }
 }
@@ -76,14 +81,14 @@ class BottomSheetView extends StatelessWidget {
                 left: 20,
                 right: 20,
                 child: Container(
-                  color: Color(0xFFEBEBEB),
+                  color: sheetItem.dividerColor,
                   height: 1.0 / MediaQuery.of(context).devicePixelRatio,
                 )),
           ],
         ),
         onTap: () {
           Navigator.pop(context);
-          if(onTap != null) {
+          if (onTap != null) {
             onTap(sheetItem);
           }
         },
