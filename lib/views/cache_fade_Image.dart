@@ -9,7 +9,7 @@ import 'package:extended_image/extended_image.dart';
 export 'package:extended_image/extended_image.dart';
 
 class CacheFadeImage extends StatefulWidget {
-  static bool isOpenDarkMode = true;
+  static bool isOpenDarkMode = false;
   CacheFadeImage.network(
     this.src, {
     Key key,
