@@ -9,6 +9,7 @@ import 'package:extended_image/extended_image.dart';
 export 'package:extended_image/extended_image.dart';
 
 class CacheFadeImage extends StatefulWidget {
+  static bool isOpenDarkMode = true;
   CacheFadeImage.network(
     this.src, {
     Key key,
@@ -82,6 +83,8 @@ class CacheFadeImageState extends State<CacheFadeImage>
   CurvedAnimation _curved; //曲线动画，动画插值，
   bool _hasCache = true;
   String _placeholder;
+  Brightness _brightness = Brightness.light;
+
   @override
   void initState() {
 //    _fade_controller = AnimationController(
@@ -140,25 +143,39 @@ class CacheFadeImageState extends State<CacheFadeImage>
         );
         break;
       case LoadState.completed:
+        double opacity = 0.0;
+        if (CacheFadeImage.isOpenDarkMode && (_brightness == Brightness.dark)) {
+          opacity = 0.35;
+        }
+        var rawImage = Stack(
+          fit: StackFit.passthrough,
+          children: <Widget>[
+            ExtendedRawImage(
+              image: state.extendedImageInfo?.image,
+              width: widget.width,
+              height: widget.height,
+              color: widget.color,
+              fit: widget.fit,
+            ),
+            Positioned(
+              left: 0,
+              right: 0,
+              top: 0,
+              bottom: 0,
+              child: Container(
+                color: Colors.black.withOpacity(opacity),
+              ),
+            )
+//            Expanded(
+//              child: Container(color: Colors.red.withOpacity(0.35),),
+//            ),
+          ],
+        );
         if (_hasCache == false && widget.enableFade == true) {
           _fadeController.forward();
-          return FadeTransition(
-              opacity: _curved,
-              child: ExtendedRawImage(
-                image: state.extendedImageInfo?.image,
-                width: widget.width,
-                height: widget.height,
-                color: widget.color,
-                fit: widget.fit,
-              ));
+          return FadeTransition(opacity: _curved, child: rawImage);
         } else {
-          return ExtendedRawImage(
-            image: state.extendedImageInfo?.image,
-            width: widget.width,
-            height: widget.height,
-            color: widget.color,
-            fit: widget.fit,
-          );
+          return rawImage;
         }
         break;
       default:
@@ -179,10 +196,11 @@ class CacheFadeImageState extends State<CacheFadeImage>
 
   @override
   Widget build(BuildContext context) {
-    _placeholder = (widget.darkPlaceholder.length > 0 &&
-            MediaQuery.of(context).platformBrightness == Brightness.dark)
-        ? widget.darkPlaceholder
-        : widget.placeholder;
+    _brightness = MediaQuery.of(context).platformBrightness;
+    _placeholder =
+        (widget.darkPlaceholder.length > 0 && _brightness == Brightness.dark)
+            ? widget.darkPlaceholder
+            : widget.placeholder;
     return ExtendedImage.network(
       widget._src ?? '',
       width: widget.width,
