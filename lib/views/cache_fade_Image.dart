@@ -166,9 +166,6 @@ class CacheFadeImageState extends State<CacheFadeImage>
                 color: Colors.black.withOpacity(opacity),
               ),
             )
-//            Expanded(
-//              child: Container(color: Colors.red.withOpacity(0.35),),
-//            ),
           ],
         );
         if (_hasCache == false && widget.enableFade == true) {
