@@ -61,7 +61,8 @@ class _MyAppState extends State<MyApp> {
         ),
         body: GestureDetector(
           onTap: () {
-            showAlert(context, 'bbb', 'aaa', '确定', '取消');
+            showAlert(context, 'bbb', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+                '确定', '取消');
           },
           child: Center(
             child: Text('Running on: $_platformVersion\n'),

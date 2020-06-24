@@ -3,10 +3,22 @@ import 'package:flutter/cupertino.dart';
 
 void showAlert(BuildContext context, String title, String msg, String leftTitle,
     String rightTitle,
-    {VoidCallback leftOnTap, VoidCallback rightOnTap}) {
+    {VoidCallback leftOnTap,
+    VoidCallback rightOnTap,
+    TextStyle leftStyle,
+    TextStyle rightStyle}) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
+      Color textColor = Color(0xFF222222);
+      Color lineColor = Colors.black;
+      Color bgColor = Colors.white;
+      var _brightness = MediaQuery.of(context).platformBrightness;
+      if (_brightness == Brightness.dark) {
+        textColor = Color(0xFF999999);
+        lineColor = Colors.white;
+        bgColor = Color(0xFF1A1A1A);
+      }
       Widget content = Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
@@ -14,7 +26,7 @@ void showAlert(BuildContext context, String title, String msg, String leftTitle,
             title,
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              color: Color(0xFF222222),
+              color: textColor,
               fontSize: 18,
               decoration: TextDecoration.none,
             ),
@@ -26,7 +38,7 @@ void showAlert(BuildContext context, String title, String msg, String leftTitle,
             msg,
             style: TextStyle(
               fontWeight: FontWeight.normal,
-              color: Color(0xFF222222),
+              color: textColor,
               fontSize: 14,
               decoration: TextDecoration.none,
             ),
@@ -39,7 +51,7 @@ void showAlert(BuildContext context, String title, String msg, String leftTitle,
             msg,
             style: TextStyle(
               fontWeight: FontWeight.normal,
-              color: Color(0xFF222222),
+              color: textColor,
               fontSize: 14,
               decoration: TextDecoration.none,
             ),
@@ -51,7 +63,7 @@ void showAlert(BuildContext context, String title, String msg, String leftTitle,
             title,
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              color: Color(0xFF222222),
+              color: textColor,
               fontSize: 18,
               decoration: TextDecoration.none,
             ),
@@ -62,14 +74,14 @@ void showAlert(BuildContext context, String title, String msg, String leftTitle,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10),
           child: Container(
-            width: 280,
-            color: Colors.black,
+            width: 260,
+            color: lineColor,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Container(
                   width: double.infinity,
-                  color: Colors.white,
+                  color: bgColor,
                   padding: EdgeInsets.fromLTRB(15, 20, 15, 20),
                   child: content,
                 ),
@@ -83,6 +95,7 @@ void showAlert(BuildContext context, String title, String msg, String leftTitle,
                       AlterButton(
                         leftTitle,
                         onTap: leftOnTap,
+                        textStyle: leftStyle,
                       ),
                       Container(
                         width: 0.1,
@@ -90,6 +103,7 @@ void showAlert(BuildContext context, String title, String msg, String leftTitle,
                       AlterButton(
                         rightTitle,
                         onTap: rightOnTap,
+                        textStyle: rightStyle,
                       ),
                     ],
                   ),
@@ -106,23 +120,35 @@ void showAlert(BuildContext context, String title, String msg, String leftTitle,
 class AlterButton extends StatelessWidget {
   final String title;
   final VoidCallback onTap;
-  AlterButton(this.title, {this.onTap});
+  final TextStyle textStyle;
+  AlterButton(this.title, {this.onTap, this.textStyle});
   @override
   Widget build(BuildContext context) {
+    TextStyle _textStyle = textStyle;
+    if (_textStyle == null) {
+      _textStyle = TextStyle(
+        fontWeight: FontWeight.normal,
+        color: Color(0xFF1F93EA),
+        fontSize: 17,
+        decoration: TextDecoration.none,
+      );
+    }
+    Color color = Colors.white;
+    var _brightness = MediaQuery.of(context).platformBrightness;
+    if (_brightness == Brightness.dark) {
+      color = Color(0xFF1A1A1A);
+    }
     return Expanded(
       child: GestureDetector(
         child: Container(
-          color: Colors.white,
-          padding: EdgeInsets.fromLTRB(15, 15, 15, 15),
+          color: color,
+          padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
           child: Center(
             child: Text(
               title,
-              style: TextStyle(
-                fontWeight: FontWeight.normal,
-                color: Color(0xFF1F93EA),
-                fontSize: 18,
-                decoration: TextDecoration.none,
-              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: _textStyle,
             ),
           ),
         ),
