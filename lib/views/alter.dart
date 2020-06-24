@@ -11,12 +11,12 @@ void showAlert(BuildContext context, String title, String msg, String leftTitle,
     context: context,
     builder: (BuildContext context) {
       Color textColor = Color(0xFF222222);
-      Color lineColor = Colors.black;
+      Color lineColor = Color(0xFFEEEEEE);
       Color bgColor = Colors.white;
       var _brightness = MediaQuery.of(context).platformBrightness;
       if (_brightness == Brightness.dark) {
         textColor = Color(0xFF999999);
-        lineColor = Colors.white;
+        lineColor = Color(0xFF303030);
         bgColor = Color(0xFF1A1A1A);
       }
       Widget content = Column(
@@ -70,51 +70,62 @@ void showAlert(BuildContext context, String title, String msg, String leftTitle,
           ),
         );
       }
+      double lineW = 1.0 / (MediaQuery.of(context)?.devicePixelRatio ?? 10);
       return Center(
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10),
-          child: Container(
-            width: 270,
-            color: bgColor,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Container(
-                  width: double.infinity,
-                  color: bgColor,
-                  padding: EdgeInsets.fromLTRB(15, 20, 15, 20),
-                  child: content,
-                ),
-                Container(
-                  height: 0.1,
-                  width: 270,
-                  color: lineColor,
-                ),
-                Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      AlterButton(
-                        leftTitle,
-                        onTap: leftOnTap,
-                        textStyle: leftStyle,
-                      ),
-                      Container(
-                        width: 0.1,
-                        height: 44,
-                        color: lineColor,
-                      ),
-                      AlterButton(
-                        rightTitle,
-                        onTap: rightOnTap,
-                        textStyle: rightStyle,
-                      ),
-                    ],
+          child: Stack(children: <Widget>[
+            Container(
+              width: 270,
+              color: bgColor,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Container(
+                    width: double.infinity,
+                    color: bgColor,
+                    padding: EdgeInsets.fromLTRB(15, 20, 15, 20),
+                    child: content,
                   ),
-                ),
-              ],
+                  Container(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        AlterButton(
+                          leftTitle,
+                          onTap: leftOnTap,
+                          textStyle: leftStyle,
+                        ),
+                        AlterButton(
+                          rightTitle,
+                          onTap: rightOnTap,
+                          textStyle: rightStyle,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
+            Positioned(
+              left: 0,
+              right: 0,
+              height: lineW,
+              bottom: 44,
+              child: Container(
+                color: lineColor,
+              ),
+            ),
+            Positioned(
+              left: 270 * 0.5,
+              width: lineW,
+              height: 44,
+              bottom: 0,
+              child: Container(
+                color: lineColor,
+              ),
+            ),
+          ]),
         ),
       );
     },
