@@ -74,7 +74,7 @@ void showAlert(BuildContext context, String title, String msg, String leftTitle,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10),
           child: Container(
-            width: 260,
+            width: 270,
             color: lineColor,
             child: Column(
               mainAxisSize: MainAxisSize.min,
