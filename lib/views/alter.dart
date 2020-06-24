@@ -75,7 +75,7 @@ void showAlert(BuildContext context, String title, String msg, String leftTitle,
           borderRadius: BorderRadius.circular(10),
           child: Container(
             width: 270,
-            color: lineColor,
+            color: bgColor,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
@@ -87,6 +87,8 @@ void showAlert(BuildContext context, String title, String msg, String leftTitle,
                 ),
                 Container(
                   height: 0.1,
+                  width: 270,
+                  color: lineColor,
                 ),
                 Container(
                   child: Row(
@@ -99,6 +101,8 @@ void showAlert(BuildContext context, String title, String msg, String leftTitle,
                       ),
                       Container(
                         width: 0.1,
+                        height: 44,
+                        color: lineColor,
                       ),
                       AlterButton(
                         rightTitle,
@@ -141,8 +145,9 @@ class AlterButton extends StatelessWidget {
     return Expanded(
       child: GestureDetector(
         child: Container(
+          height: 44,
           color: color,
-          padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+          padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
           child: Center(
             child: Text(
               title,

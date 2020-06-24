@@ -54,8 +54,16 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    var _brightness = MediaQuery.of(context).platformBrightness;
+    Color color = Colors.white;
+    Color titleColor = Colors.black;
+    if (_brightness == Brightness.dark) {
+      color = Colors.black;
+      titleColor = Colors.white;
+    }
     return MaterialApp(
       home: Scaffold(
+        backgroundColor: color,
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
@@ -65,7 +73,10 @@ class _MyAppState extends State<MyApp> {
                 '确定', '取消');
           },
           child: Center(
-            child: Text('Running on: $_platformVersion\n'),
+            child: Text(
+              'Running on: $_platformVersion\n',
+              style: TextStyle(color: titleColor),
+            ),
           ),
         ),
       ),
