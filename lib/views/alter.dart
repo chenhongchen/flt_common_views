@@ -11,7 +11,7 @@ void showAlert(BuildContext context, String title, String msg, String leftTitle,
     context: context,
     builder: (BuildContext context) {
       Color textColor = Color(0xFF222222);
-      Color lineColor = Color(0xFFEEEEEE);
+      Color lineColor = Color(0xFFb1b2b1);
       Color bgColor = Colors.white;
       var _brightness = MediaQuery.of(context).platformBrightness;
       if (_brightness == Brightness.dark) {
@@ -143,7 +143,7 @@ class AlterButton extends StatelessWidget {
     if (_textStyle == null) {
       _textStyle = TextStyle(
         fontWeight: FontWeight.normal,
-        color: Color(0xFF1F93EA),
+        color: Color(0xFF3478f6),
         fontSize: 17,
         decoration: TextDecoration.none,
       );
