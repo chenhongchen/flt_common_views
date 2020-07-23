@@ -108,7 +108,7 @@ class CacheFadeImageState extends State<CacheFadeImage>
   @override
   void dispose() {
     _fadeController.dispose();
-    debugPrint('销毁---cache_fade_image');
+//    debugPrint('销毁---cache_fade_image');
     super.dispose();
   }
 
