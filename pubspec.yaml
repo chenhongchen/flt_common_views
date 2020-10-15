@@ -22,7 +22,7 @@ dependencies:
 
   flt_system_info:
     git:
-      url: 'http://117.41.1.11:2086/plugins/flt_system_info.git'
+      url: 'http://117.41.1.11:2086/plugins/flt_system_info'
 
 dev_dependencies:
   flutter_test:
