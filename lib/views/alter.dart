@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-void showAlert(BuildContext context, String title, String msg, String leftTitle,
-    String rightTitle,
-    {VoidCallback leftOnTap,
-    VoidCallback rightOnTap,
-    TextStyle leftStyle,
-    TextStyle rightStyle}) {
+void showAlert(
+  BuildContext context, {
+  String title = '提示',
+  String msg = '',
+  String leftTitle = '取消',
+  String rightTitle = '确定',
+  VoidCallback leftOnTap,
+  VoidCallback rightOnTap,
+  TextStyle leftStyle,
+  TextStyle rightStyle,
+}) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
