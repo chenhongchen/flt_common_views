@@ -133,14 +133,16 @@ class CacheFadeImageState extends State<CacheFadeImage>
     switch (state.extendedImageLoadState) {
       case LoadState.loading:
         _fadeController.reset();
-        return Image.asset(
-          _placeholder,
-          package: widget.package,
-          width: widget.width,
-          height: widget.height,
-          color: widget.color,
-          fit: widget.placeholderFit,
-        );
+        return (_placeholder ?? '').length > 0
+            ? Image.asset(
+                _placeholder,
+                package: widget.package,
+                width: widget.width,
+                height: widget.height,
+                color: widget.color,
+                fit: widget.placeholderFit,
+              )
+            : Container();
         break;
       case LoadState.completed:
         double opacity = 0.0;
@@ -179,14 +181,16 @@ class CacheFadeImageState extends State<CacheFadeImage>
         _fadeController.reset();
         //remove memory cached
         state.imageProvider.evict();
-        return Image.asset(
-          _placeholder,
-          package: widget.package,
-          width: widget.width,
-          height: widget.height,
-          color: widget.color,
-          fit: widget.placeholderFit,
-        );
+        return (_placeholder ?? '').length > 0
+            ? Image.asset(
+                _placeholder,
+                package: widget.package,
+                width: widget.width,
+                height: widget.height,
+                color: widget.color,
+                fit: widget.placeholderFit,
+              )
+            : Container();
         break;
     }
   }
@@ -194,10 +198,10 @@ class CacheFadeImageState extends State<CacheFadeImage>
   @override
   Widget build(BuildContext context) {
     _brightness = MediaQuery.of(context).platformBrightness;
-    _placeholder =
-        (widget.darkPlaceholder.length > 0 && _brightness == Brightness.dark)
-            ? widget.darkPlaceholder
-            : widget.placeholder;
+    _placeholder = ((widget.darkPlaceholder?.length ?? 0) > 0 &&
+            _brightness == Brightness.dark)
+        ? widget.darkPlaceholder
+        : widget.placeholder;
     return ExtendedImage.network(
       widget._src ?? '',
       width: widget.width,
