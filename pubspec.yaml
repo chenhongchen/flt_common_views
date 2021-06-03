@@ -11,9 +11,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-  # 新刷新控件
-  pull_to_refresh: 1.6.3
-
   flt_system_info:
     git:
       url: 'http://ugitlab.com:2086/plugins/flt_system_info'
