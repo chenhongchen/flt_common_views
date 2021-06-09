@@ -33,9 +33,9 @@ flutter:
     pluginClass: FltCommonViewsPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
-  assets:
-    - images/list_load_idle.gif
-    - images/list_load.gif
+#  assets:
+#    - images/list_load_idle.gif
+#    - images/list_load.gif
   #
   # For details regarding assets in packages, see
   # https://flutter.dev/assets-and-images/#from-packages
