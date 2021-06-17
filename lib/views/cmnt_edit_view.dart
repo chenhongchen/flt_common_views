@@ -5,13 +5,13 @@ import 'package:flt_system_info/flt_system_info.dart';
 typedef SendCallback = void Function(String text);
 
 class CmntEditView extends StatefulWidget {
-  final FocusNode focusNode;
+  final FocusNode? focusNode;
   final String placeholder;
-  final SendCallback sendCallback;
-  final Function() onDispose;
+  final SendCallback? sendCallback;
+  final Function()? onDispose;
   final Color bgColor;
   final String sendTitle;
-  Color sendBgColor;
+  Color? sendBgColor;
 
   CmntEditView({
     this.focusNode,
@@ -35,12 +35,12 @@ class CmntEditView extends StatefulWidget {
 
 class _CmntEditViewState extends State<CmntEditView>
     with AutomaticKeepAliveClientMixin, TickerProviderStateMixin {
-  AnimationController _animationController;
-  AnimationController _opacityAnimation;
+  late AnimationController _animationController;
+  late AnimationController _opacityAnimation;
   TextEditingController _teVc = TextEditingController();
   var _opacity = 0.0;
   double _keyboardBottom = 0;
-  int _listenerId;
+  late int _listenerId;
 
   @override
   bool get wantKeepAlive => true;
@@ -76,15 +76,9 @@ class _CmntEditViewState extends State<CmntEditView>
 
   @override
   void dispose() {
-    if (_animationController != null) {
-      _animationController.dispose();
-    }
-    if (_teVc != null) {
-      _teVc.dispose();
-    }
-    if (_listenerId != null) {
-      FltSystemInfo.removeListener(_listenerId);
-    }
+    _animationController.dispose();
+    _teVc.dispose();
+    FltSystemInfo.removeListener(_listenerId);
     super.dispose();
   }
 
@@ -118,9 +112,9 @@ class _CmntEditViewState extends State<CmntEditView>
                       color: widget.bgColor,
                     ),
                     onTap: () {
-                      widget.focusNode.unfocus();
+                      widget.focusNode?.unfocus();
                       if (widget.onDispose != null) {
-                        widget.onDispose();
+                        widget.onDispose!();
                       }
                     },
                   )),
@@ -228,12 +222,12 @@ class _CmntEditViewState extends State<CmntEditView>
       return;
     }
     if (widget.sendCallback != null) {
-      widget.sendCallback(_teVc.text);
+      widget.sendCallback!(_teVc.text);
     }
     _teVc.text = '';
-    widget.focusNode.unfocus();
+    widget.focusNode?.unfocus();
     if (widget.onDispose != null) {
-      widget.onDispose();
+      widget.onDispose!();
     }
     setState(() {});
   }

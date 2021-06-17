@@ -1,30 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'bottom_sheet.dart';
 
 typedef TapBottomSheetItemCallback = void Function(BottomSheetItem sheetItem);
 
-Future<T> showBottomSheetPage<T>({
-  @required BuildContext context,
-  @required List<BottomSheetItem> sheetItems,
+Future<T?> showBottomSheetPage<T>({
+  required BuildContext context,
+  required List<BottomSheetItem> sheetItems,
   Color bgColor = Colors.black54,
-  double maxHeight,
-  TapBottomSheetItemCallback onTap,
+  TapBottomSheetItemCallback? onTap,
 }) {
-  customShowModalBottomSheet(
-      context: context,
-      builder: (BuildContext context) {
-        return BottomSheetView(sheetItems, onTap);
-      },
-      bgColor: bgColor,
-      maxHeight: maxHeight);
+  return showModalBottomSheet(
+    context: context,
+    builder: (BuildContext context) {
+      return BottomSheetView(sheetItems, onTap);
+    },
+    backgroundColor: bgColor,
+    barrierColor: bgColor,
+  );
 }
 
 class BottomSheetItem {
   String text;
-  TextStyle style;
+  TextStyle? style;
   Color backColor;
-  Color dividerColor;
+  Color? dividerColor;
   double height;
 
   BottomSheetItem(
@@ -49,7 +48,7 @@ class BottomSheetItem {
 
 class BottomSheetView extends StatelessWidget {
   List<BottomSheetItem> sheetItems;
-  TapBottomSheetItemCallback onTap;
+  TapBottomSheetItemCallback? onTap;
 
   BottomSheetView(this.sheetItems, this.onTap);
 
@@ -61,7 +60,7 @@ class BottomSheetView extends StatelessWidget {
   }
 
   List<Widget> _builSheet(BuildContext context) {
-    var sheetViews = List<Widget>();
+    var sheetViews = <Widget>[];
     for (BottomSheetItem sheetItem in sheetItems) {
       var view = GestureDetector(
         child: Stack(
@@ -89,7 +88,7 @@ class BottomSheetView extends StatelessWidget {
         onTap: () {
           Navigator.pop(context);
           if (onTap != null) {
-            onTap(sheetItem);
+            onTap!(sheetItem);
           }
         },
       );

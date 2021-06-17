@@ -7,10 +7,10 @@ void showAlert(
   String msg = '',
   String leftTitle = '取消',
   String rightTitle = '确定',
-  VoidCallback leftOnTap,
-  VoidCallback rightOnTap,
-  TextStyle leftStyle,
-  TextStyle rightStyle,
+  VoidCallback? leftOnTap,
+  VoidCallback? rightOnTap,
+  TextStyle? leftStyle,
+  TextStyle? rightStyle,
 }) {
   showDialog(
     context: context,
@@ -75,7 +75,7 @@ void showAlert(
           ),
         );
       }
-      double lineW = 1.0 / (MediaQuery.of(context)?.devicePixelRatio ?? 10);
+      double lineW = 1.0 / (MediaQuery.of(context).devicePixelRatio);
       return Center(
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10),
@@ -139,12 +139,12 @@ void showAlert(
 
 class AlterButton extends StatelessWidget {
   final String title;
-  final VoidCallback onTap;
-  final TextStyle textStyle;
+  final VoidCallback? onTap;
+  final TextStyle? textStyle;
   AlterButton(this.title, {this.onTap, this.textStyle});
   @override
   Widget build(BuildContext context) {
-    TextStyle _textStyle = textStyle;
+    TextStyle? _textStyle = textStyle;
     if (_textStyle == null) {
       _textStyle = TextStyle(
         fontWeight: FontWeight.normal,
@@ -176,7 +176,7 @@ class AlterButton extends StatelessWidget {
         onTap: () {
           Navigator.pop(context);
           if (onTap != null) {
-            onTap();
+            onTap!();
           }
         },
       ),

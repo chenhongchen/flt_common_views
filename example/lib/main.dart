@@ -4,6 +4,7 @@ import 'dart:async';
 import 'package:flutter/services.dart';
 import 'package:flt_common_views/flt_common_views.dart';
 import 'package:flt_common_views/views/alter.dart';
+import 'package:flt_common_views/views/bottom_sheet_view.dart';
 
 void main() => runApp(MainPage());
 
@@ -67,20 +68,47 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
-        body: GestureDetector(
-          onTap: () {
-            showAlert(context,
-                // title: 'bbb',
-                msg: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
-                leftTitle: '取消',
-                rightTitle: '确定');
-          },
-          child: Center(
-            child: Text(
-              'Running on: $_platformVersion\n',
-              style: TextStyle(color: titleColor),
+        body: Column(
+          children: [
+            GestureDetector(
+              onTap: () {
+                showAlert(context,
+                    // title: 'bbb',
+                    msg: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+                    leftTitle: '取消',
+                    rightTitle: '确定');
+              },
+              child: Container(
+                alignment: Alignment.center,
+                height: 44,
+                color: Colors.transparent,
+                child: Text(
+                  'showAlert',
+                  style: TextStyle(color: titleColor),
+                ),
+              ),
             ),
-          ),
+            GestureDetector(
+              onTap: () {
+                BottomSheetItem item = BottomSheetItem(text: 'aaa');
+                BottomSheetItem item1 = BottomSheetItem(
+                    text: '', height: MediaQuery.of(context).padding.bottom);
+                showBottomSheetPage(
+                  context: context,
+                  sheetItems: [item, item1],
+                );
+              },
+              child: Container(
+                alignment: Alignment.center,
+                color: Colors.transparent,
+                height: 44,
+                child: Text(
+                  'showBottomSheetPage',
+                  style: TextStyle(color: titleColor),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

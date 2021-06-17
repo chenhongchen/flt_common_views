@@ -14,15 +14,15 @@ class BorderContainer extends StatelessWidget {
     this.margin,
   });
 
-  final Widget child;
-  final double width;
-  final double height;
+  final Widget? child;
+  final double? width;
+  final double? height;
   final double borderWidth;
   final Color borderColor;
   final double borderRadius;
   final Color backgroundColor;
-  final EdgeInsetsGeometry padding;
-  final EdgeInsetsGeometry margin;
+  final EdgeInsetsGeometry? padding;
+  final EdgeInsetsGeometry? margin;
 
   @override
   Widget build(BuildContext context) {

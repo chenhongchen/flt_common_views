@@ -4,9 +4,9 @@ import 'package:flutter/scheduler.dart';
 
 class FixTabBarView extends StatefulWidget {
   const FixTabBarView({
-    Key key,
-    @required this.children,
-    @required this.controller,
+    Key? key,
+    required this.children,
+    required this.controller,
     this.physics,
     this.dragStartBehavior = DragStartBehavior.start,
   })  : assert(children != null),
@@ -15,7 +15,7 @@ class FixTabBarView extends StatefulWidget {
 
   final TabController controller;
   final List<Widget> children;
-  final ScrollPhysics physics;
+  final ScrollPhysics? physics;
   final DragStartBehavior dragStartBehavior;
 
   @override
@@ -23,12 +23,11 @@ class FixTabBarView extends StatefulWidget {
 }
 
 class _FixTabBarViewState extends State<FixTabBarView> {
-  PageController _pageController;
+  PageController _pageController = PageController();
   @override
   void initState() {
     super.initState();
-    _pageController = PageController();
-    SchedulerBinding.instance.addPostFrameCallback((_) {
+    SchedulerBinding.instance?.addPostFrameCallback((_) {
       _pageController.jumpToPage(widget.controller.index);
     });
     widget.controller.addListener(() {
