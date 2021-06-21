@@ -671,7 +671,7 @@ Future<T?> customShowModalBottomSheet<T>({
   ShapeBorder? shape,
   Clip? clipBehavior,
   Color? barrierColor,
-  bool isScrollControlled = false,
+  bool isScrollControlled = true,
   bool useRootNavigator = false,
   bool isDismissible = true,
   bool enableDrag = true,
