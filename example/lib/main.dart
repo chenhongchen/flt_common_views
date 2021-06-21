@@ -4,7 +4,7 @@ import 'dart:async';
 import 'package:flutter/services.dart';
 import 'package:flt_common_views/flt_common_views.dart';
 import 'package:flt_common_views/views/alter.dart';
-import 'package:flt_common_views/views/bottom_sheet_view.dart';
+import 'package:flt_common_views/views/bottom_sheet/bottom_sheet_view.dart';
 
 void main() => runApp(MainPage());
 

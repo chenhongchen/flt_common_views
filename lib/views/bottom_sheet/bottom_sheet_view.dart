@@ -1,3 +1,4 @@
+import 'package:flt_common_views/views/bottom_sheet/bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -9,7 +10,7 @@ Future<T?> showBottomSheetPage<T>({
   Color bgColor = Colors.black54,
   TapBottomSheetItemCallback? onTap,
 }) {
-  return showModalBottomSheet(
+  return customShowModalBottomSheet(
     context: context,
     builder: (BuildContext context) {
       return BottomSheetView(sheetItems, onTap);
