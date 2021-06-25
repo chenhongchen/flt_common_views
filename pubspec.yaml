@@ -14,7 +14,7 @@ dependencies:
   flt_system_info:
     git:
       url: 'http://ugitlab.com:2086/plugins/flt_system_info'
-      ref: 'f1.17'
+      ref: 'f2.2'
 
 dev_dependencies:
   flutter_test:
