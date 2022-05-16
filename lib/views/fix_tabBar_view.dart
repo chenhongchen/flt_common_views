@@ -24,10 +24,11 @@ class FixTabBarView extends StatefulWidget {
 
 class _FixTabBarViewState extends State<FixTabBarView> {
   PageController _pageController = PageController();
+
   @override
   void initState() {
     super.initState();
-    SchedulerBinding.instance?.addPostFrameCallback((_) {
+    SchedulerBinding.instance.addPostFrameCallback((_) {
       _pageController.jumpToPage(widget.controller.index);
     });
     widget.controller.addListener(() {
