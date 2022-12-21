@@ -84,6 +84,7 @@ void showAlert(
       }
       double lineW = 1.0 / (MediaQuery.of(context).devicePixelRatio);
       return Material(
+        color: Colors.transparent,
         child: Center(
           child: ClipRRect(
             borderRadius: BorderRadius.circular(10),
