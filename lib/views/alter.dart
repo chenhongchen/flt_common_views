@@ -4,7 +4,9 @@ void showAlert(
   BuildContext context, {
   String title = '提示',
   String msg = '',
+  TextAlign? titleAlign,
   TextStyle? titleStyle,
+  TextAlign? msgAlign,
   TextStyle? msgStyle,
   String leftTitle = '取消',
   String rightTitle = '确定',
@@ -14,9 +16,24 @@ void showAlert(
   TextStyle? rightStyle,
   Color? lineColor,
   Color? bgColor,
+  //
+  bool barrierDismissible = true,
+  Color? barrierColor = Colors.black54,
+  String? barrierLabel,
+  bool useSafeArea = true,
+  bool useRootNavigator = true,
+  RouteSettings? routeSettings,
+  Offset? anchorPoint,
 }) {
   showDialog(
     context: context,
+    barrierDismissible: barrierDismissible,
+    barrierColor: barrierColor,
+    barrierLabel: barrierLabel,
+    useSafeArea: useSafeArea,
+    useRootNavigator: useRootNavigator,
+    routeSettings: routeSettings,
+    anchorPoint: anchorPoint,
     builder: (BuildContext context) {
       Color textColor = Color(0xFF222222);
       Color lineDefCol = Color(0xFFb1b2b1);
@@ -34,6 +51,7 @@ void showAlert(
         children: <Widget>[
           Text(
             title,
+            textAlign: titleAlign,
             style: titleStyle ??
                 TextStyle(
                   fontWeight: FontWeight.bold,
@@ -47,6 +65,7 @@ void showAlert(
           ),
           Text(
             msg,
+            textAlign: msgAlign,
             style: msgStyle ??
                 TextStyle(
                   fontWeight: FontWeight.normal,
