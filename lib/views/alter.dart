@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+bool showAlertDarkModelEnable = true;
+
 void showAlert(
   BuildContext context, {
   String title = '提示',
@@ -39,7 +41,7 @@ void showAlert(
       Color lineDefCol = Color(0xFFb1b2b1);
       Color bgDefColor = Colors.white;
       var _brightness = MediaQuery.of(context).platformBrightness;
-      if (_brightness == Brightness.dark) {
+      if (showAlertDarkModelEnable && _brightness == Brightness.dark) {
         textColor = Color(0xFF999999);
         lineDefCol = Color(0xFF303030);
         bgDefColor = Color(0xFF1A1A1A);
@@ -186,7 +188,7 @@ class AlterButton extends StatelessWidget {
     }
     Color color = Colors.white;
     var _brightness = MediaQuery.of(context).platformBrightness;
-    if (_brightness == Brightness.dark) {
+    if (showAlertDarkModelEnable && _brightness == Brightness.dark) {
       color = Color(0xFF1A1A1A);
     }
     return Expanded(
