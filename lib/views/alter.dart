@@ -48,60 +48,42 @@ void showAlert(
       }
       lineColor = lineColor ?? lineDefCol;
       bgColor = bgColor ?? bgDefColor;
-      Widget content = Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Text(
-            title,
-            textAlign: titleAlign,
-            style: titleStyle ??
-                TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: textColor,
-                  fontSize: 18,
-                  decoration: TextDecoration.none,
-                ),
-          ),
-          Container(
-            height: 3,
-          ),
-          Text(
-            msg,
-            textAlign: msgAlign,
-            style: msgStyle ??
-                TextStyle(
-                  fontWeight: FontWeight.normal,
-                  color: textColor,
-                  fontSize: 14,
-                  decoration: TextDecoration.none,
-                ),
-          ),
-        ],
-      );
-      if (title.length <= 0) {
-        content = Center(
-          child: Text(
-            msg,
-            style: TextStyle(
-              fontWeight: FontWeight.normal,
-              color: textColor,
-              fontSize: 14,
-              decoration: TextDecoration.none,
-            ),
-          ),
-        );
-      } else if (msg.length <= 0) {
-        content = Center(
-          child: Text(
-            title,
-            style: TextStyle(
+      Widget titleWidget = Text(
+        title,
+        textAlign: titleAlign,
+        style: titleStyle ??
+            TextStyle(
               fontWeight: FontWeight.bold,
               color: textColor,
               fontSize: 18,
               decoration: TextDecoration.none,
             ),
+      );
+      Widget msgWidget = Text(
+        msg,
+        textAlign: msgAlign,
+        style: msgStyle ??
+            TextStyle(
+              fontWeight: FontWeight.normal,
+              color: textColor,
+              fontSize: 14,
+              decoration: TextDecoration.none,
+            ),
+      );
+      Widget content = Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          titleWidget,
+          Container(
+            height: 3,
           ),
-        );
+          msgWidget,
+        ],
+      );
+      if (title.length <= 0) {
+        content = Center(child: msgWidget);
+      } else if (msg.length <= 0) {
+        content = Center(child: titleWidget);
       }
       double lineW = 1.0 / (MediaQuery.of(context).devicePixelRatio);
       return Material(
